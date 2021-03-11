@@ -34,4 +34,14 @@ public class ContactService {
 			throw new ContactNotFoundException();
 		}
 	}
+	
+	public Contact searchContactByName(String name, List<Contact> contacts) throws ContactNotFoundException{
+		for(Contact c:contacts) {
+			if(c.getContactName().equals(name)) {
+				System.out.print("Contact found");
+				return c;
+			}
+		}
+		throw new ContactNotFoundException();
+	}
 }
