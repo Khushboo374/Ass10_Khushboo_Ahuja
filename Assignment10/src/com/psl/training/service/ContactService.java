@@ -50,7 +50,7 @@ public class ContactService {
 	public Contact searchContactByName(String name, List<Contact> contacts) throws ContactNotFoundException{
 		for(Contact c:contacts) {
 			if(c.getContactName().equals(name)) {
-				System.out.print("Contact found");
+				System.out.println("Contact found");
 				return c;
 			}
 		}
@@ -61,12 +61,14 @@ public class ContactService {
 		List<String> contactNos = new ArrayList<>();
 		List<Contact> foundContacts = new ArrayList<>();
 		for(Contact c:contacts) {
+			if(c.getContactNumber() != null) {
 			contactNos.addAll(c.getContactNumber());
 			for(String no : contactNos) {
-				if(no.contains(number))
+				if(no.contains(number)) {
 					foundContacts.add(c);
-			}
-		}
+					break;
+			}}
+		}}
 		if(foundContacts.size() == 0)
 			throw new ContactNotFoundException();
 		return foundContacts;
@@ -75,9 +77,17 @@ public class ContactService {
 	public void addContactNumber(int contactId, String contactNo, List<Contact> contacts) throws ContactNotFoundException {
 		for(Contact c : contacts) {
 			if(c.getContactId() == contactId) {
+				if(c.getContactNumber() != null) {
 				c.getContactNumber().add(contactNo);
 				System.out.println("Number added successfully");
 				return;
+				}
+				else {
+					List<String> num = new ArrayList<>();
+					num.add(contactNo);
+					c.setContactNumber(num);
+					return;
+				}
 			}
 		}
 		throw new ContactNotFoundException();
@@ -93,7 +103,18 @@ public class ContactService {
 			Scanner sc = new Scanner(file);
 			while(sc.hasNext()) {
 				String data[] = sc.nextLine().split(",");
-				Contact contact = new Contact(Integer.parseInt(data[0]),data[1],data[2],List.of(data[5].split(";")));
+				Contact contact = new Contact();
+				if(data.length == 3) {
+					contact.setContactId(Integer.parseInt(data[0]));
+					contact.setContactName(data[1]);
+					contact.setAddress(data[2]);
+				}
+				else if(data.length==4) {
+					contact.setContactId(Integer.parseInt(data[0]));
+					contact.setContactName(data[1]);
+					contact.setAddress(data[2]);
+					contact.setContactNumber(List.of(data[3].split(",")));
+				}
 				contacts.add(contact);
 			}
 			sc.close();

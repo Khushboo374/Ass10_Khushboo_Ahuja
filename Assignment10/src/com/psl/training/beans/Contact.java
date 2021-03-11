@@ -1,8 +1,9 @@
 package com.psl.training.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Contact implements Comparable<Contact>{
+public class Contact implements Serializable,Comparable<Contact>{
 	private int contactId;
 	private String ContactName;
 	private String emailAddress;

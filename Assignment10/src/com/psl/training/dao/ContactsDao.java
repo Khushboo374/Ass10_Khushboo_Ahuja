@@ -22,7 +22,13 @@ public class ContactsDao {
 			Statement stmt = con.createStatement();
 			ResultSet results = stmt.executeQuery("select * from contact_tbl");
 			while(results.next()) {
-				contact = new Contact(results.getInt(1),results.getString(2),results.getString(3),List.of(results.getString(4).split(",")));
+				contact = new Contact();
+				contact.setContactId(results.getInt(1));
+				contact.setContactName(results.getString(2));
+				contact.setAddress(results.getString(3));
+				if(results.getString(4) != null) {
+					contact.setContactNumber(List.of(results.getString(4).split(",")));
+				}
 				contacts.add(contact);
 			}
 		} catch (SQLException e) {
