@@ -2,7 +2,7 @@ package com.psl.training.beans;
 
 import java.util.List;
 
-public class Contact {
+public class Contact implements Comparable<Contact>{
 	private int contactId;
 	private String ContactName;
 	private String Address;
@@ -46,5 +46,10 @@ public class Contact {
 	public String toString() {
 		return "Contact [contactId=" + contactId + ", ContactName=" + ContactName + ", Address=" + Address
 				+ ", contactNumber=" + contactNumber + "]";
+	}
+	@Override
+	public int compareTo(Contact o) {
+		// TODO Auto-generated method stub
+		return this.getContactName().compareTo(o.getContactName());
 	}
 }

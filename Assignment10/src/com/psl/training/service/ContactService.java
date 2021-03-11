@@ -1,6 +1,7 @@
 package com.psl.training.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.psl.training.beans.Contact;
@@ -71,5 +72,10 @@ public class ContactService {
 		}
 		throw new ContactNotFoundException();
 	}
+	
+	public void sortContactsByName(List<Contact> contacts) {
+		Collections.sort(contacts);
+	}
+	
 	
 }
