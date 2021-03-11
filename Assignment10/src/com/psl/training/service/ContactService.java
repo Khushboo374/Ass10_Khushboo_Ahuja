@@ -1,5 +1,6 @@
 package com.psl.training.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.psl.training.beans.Contact;
@@ -44,4 +45,20 @@ public class ContactService {
 		}
 		throw new ContactNotFoundException();
 	}
+	
+	public List<Contact> SearchContactByNumber(String number, List<Contact> contacts)throws ContactNotFoundException{
+		List<String> contactNos = new ArrayList<>();
+		List<Contact> foundContacts = new ArrayList<>();
+		for(Contact c:contacts) {
+			contactNos.addAll(c.getContactNumber());
+			for(String no : contactNos) {
+				if(no.contains(number))
+					foundContacts.add(c);
+			}
+		}
+		if(foundContacts.size() == 0)
+			throw new ContactNotFoundException();
+		return foundContacts;
+	}
+	
 }
