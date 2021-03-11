@@ -1,9 +1,11 @@
 package com.psl.training.service;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -111,5 +113,23 @@ public class ContactService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Contact> deserializeContact(String fileName){
+		List<Contact> contacts = new ArrayList<>();
+		File file = new File(fileName);
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			contacts = (List<Contact>) ois.readObject();
+			
+			fis.close();
+			ois.close();
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return contacts;
 	}
 }
