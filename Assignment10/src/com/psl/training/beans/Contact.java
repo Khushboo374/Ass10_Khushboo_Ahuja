@@ -1,11 +1,12 @@
 package com.psl.training.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Contact {
+public class Contact implements Serializable,Comparable<Contact>{
 	private int contactId;
 	private String ContactName;
-	private String Address;
+	private String emailAddress;
 	private List<String> contactNumber;
 	public Contact() {
 		super();
@@ -15,7 +16,7 @@ public class Contact {
 		super();
 		this.contactId = contactId;
 		ContactName = contactName;
-		Address = address;
+		emailAddress = address;
 		this.contactNumber = contactNumber;
 	}
 	public int getContactId() {
@@ -31,10 +32,10 @@ public class Contact {
 		ContactName = contactName;
 	}
 	public String getAddress() {
-		return Address;
+		return emailAddress;
 	}
 	public void setAddress(String address) {
-		Address = address;
+		emailAddress = address;
 	}
 	public List<String> getContactNumber() {
 		return contactNumber;
@@ -44,7 +45,12 @@ public class Contact {
 	}
 	@Override
 	public String toString() {
-		return "Contact [contactId=" + contactId + ", ContactName=" + ContactName + ", Address=" + Address
+		return "Contact [contactId=" + contactId + ", ContactName=" + ContactName + ", Address=" + emailAddress
 				+ ", contactNumber=" + contactNumber + "]";
+	}
+	@Override
+	public int compareTo(Contact o) {
+		// TODO Auto-generated method stub
+		return this.getContactName().compareTo(o.getContactName());
 	}
 }
