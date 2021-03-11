@@ -46,7 +46,7 @@ public class ContactService {
 		throw new ContactNotFoundException();
 	}
 	
-	public List<Contact> SearchContactByNumber(String number, List<Contact> contacts)throws ContactNotFoundException{
+	public List<Contact> SearchContactByNumber(String number, List<Contact> contacts) throws ContactNotFoundException{
 		List<String> contactNos = new ArrayList<>();
 		List<Contact> foundContacts = new ArrayList<>();
 		for(Contact c:contacts) {
@@ -59,6 +59,17 @@ public class ContactService {
 		if(foundContacts.size() == 0)
 			throw new ContactNotFoundException();
 		return foundContacts;
+	}
+	
+	public void addContactNumber(int contactId, String contactNo, List<Contact> contacts) throws ContactNotFoundException {
+		for(Contact c : contacts) {
+			if(c.getContactId() == contactId) {
+				c.getContactNumber().add(contactNo);
+				System.out.println("Number added successfully");
+				return;
+			}
+		}
+		throw new ContactNotFoundException();
 	}
 	
 }
