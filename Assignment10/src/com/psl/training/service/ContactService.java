@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+
 import com.psl.training.beans.Contact;
+import com.psl.training.dao.ContactsDao;
 
 @SuppressWarnings("serial")
 class ContactNotFoundException extends Exception{
@@ -133,4 +136,8 @@ public class ContactService {
 		return contacts;
 	}
 	
+	
+	public Set<Contact> populateContactFromDb(){
+		return ContactsDao.populateContactFromDb();
+	}
 }
