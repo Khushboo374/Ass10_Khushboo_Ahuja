@@ -5,7 +5,7 @@ import java.util.List;
 public class Contact implements Comparable<Contact>{
 	private int contactId;
 	private String ContactName;
-	private String Address;
+	private String emailAddress;
 	private List<String> contactNumber;
 	public Contact() {
 		super();
@@ -15,7 +15,7 @@ public class Contact implements Comparable<Contact>{
 		super();
 		this.contactId = contactId;
 		ContactName = contactName;
-		Address = address;
+		emailAddress = address;
 		this.contactNumber = contactNumber;
 	}
 	public int getContactId() {
@@ -31,10 +31,10 @@ public class Contact implements Comparable<Contact>{
 		ContactName = contactName;
 	}
 	public String getAddress() {
-		return Address;
+		return emailAddress;
 	}
 	public void setAddress(String address) {
-		Address = address;
+		emailAddress = address;
 	}
 	public List<String> getContactNumber() {
 		return contactNumber;
@@ -44,7 +44,7 @@ public class Contact implements Comparable<Contact>{
 	}
 	@Override
 	public String toString() {
-		return "Contact [contactId=" + contactId + ", ContactName=" + ContactName + ", Address=" + Address
+		return "Contact [contactId=" + contactId + ", ContactName=" + ContactName + ", Address=" + emailAddress
 				+ ", contactNumber=" + contactNumber + "]";
 	}
 	@Override

@@ -1,9 +1,11 @@
 package com.psl.training.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+import java.util.Scanner;
 import com.psl.training.beans.Contact;
 
 @SuppressWarnings("serial")
@@ -77,5 +79,19 @@ public class ContactService {
 		Collections.sort(contacts);
 	}
 	
-	
+	public void readContactsFromFile(List<Contact> contacts, String fileName) {
+		File file = new File(fileName);
+		try {
+			Scanner sc = new Scanner(file);
+			while(sc.hasNext()) {
+				String data[] = sc.nextLine().split(",");
+				Contact contact = new Contact(Integer.parseInt(data[0]),data[1],data[2],List.of(data[5].split(";")));
+				contacts.add(contact);
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
