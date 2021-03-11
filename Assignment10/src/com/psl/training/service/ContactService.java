@@ -140,4 +140,14 @@ public class ContactService {
 	public Set<Contact> populateContactFromDb(){
 		return ContactsDao.populateContactFromDb();
 	}
+	
+	public Boolean addContacts(List <Contact> existingContact,Set <Contact> newContacts) {
+		if(newContacts.size() == 0) {
+			System.out.println("No new contacts to add.");
+			return false;
+		}
+		existingContact.addAll(newContacts);
+		System.out.println("New contacts added successfully.");
+		return true;
+	}
 }
